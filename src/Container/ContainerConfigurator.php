@@ -29,6 +29,11 @@ class ContainerConfigurator
     private $containers = [];
 
     /**
+     * @var ContainerExtensionInterface[]
+     */
+    private $containerExtension = [];
+
+    /**
      * @var null|ContainerInterface
      */
     private $compiledContainer;
@@ -50,6 +55,11 @@ class ContainerConfigurator
      */
     public function addContainer(ContainerInterface $container): void
     {
+        if ($container instanceof ContainerExtensionInterface) {
+            $this->containerExtension[] = $container;
+            return;
+        }
+
         $this->containers[] = $container;
     }
 
@@ -144,12 +154,18 @@ class ContainerConfigurator
     public function createReadOnlyContainer(): ContainerInterface
     {
         if (!$this->compiledContainer) {
-            $this->compiledContainer = new ReadOnlyContainer(
+            $readOnlyContainer = new ReadOnlyContainer(
                 $this->services,
                 $this->factoryIds,
                 $this->extensions,
                 $this->containers
             );
+
+            foreach ($this->containerExtension as $containerExtension) {
+                $readOnlyContainer = $containerExtension::wrapContainer($readOnlyContainer);
+            }
+
+            $this->compiledContainer = $readOnlyContainer;
         }
 
         return $this->compiledContainer;
