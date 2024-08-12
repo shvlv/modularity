@@ -33,7 +33,8 @@
         "phpunit/phpunit": "^8.5.21 || ^9.6.7",
         "vimeo/psalm": "^4.13.1",
         "php-stubs/wordpress-stubs": ">=5.8@stable",
-        "johnpbloch/wordpress-core": ">=5.8"
+        "johnpbloch/wordpress-core": ">=5.8",
+        "inpsyde/wp-dbless": "^0.3.0"
     },
     "extra": {
         "branch-alias": {
@@ -48,7 +49,8 @@
     "autoload-dev": {
         "psr-4": {
             "Inpsyde\\Modularity\\Tests\\": "tests/src/",
-            "Inpsyde\\Modularity\\Tests\\Unit\\": "tests/unit/"
+            "Inpsyde\\Modularity\\Tests\\Unit\\": "tests/unit/",
+            "Inpsyde\\Modularity\\Tests\\Integration\\": "tests/integration/"
         }
     },
     "minimum-stability": "dev",
@@ -69,5 +71,14 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "composer/package-versions-deprecated": true
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.com/inpsyde/"
+        },
+        {
+            "packagist.org": false
+        }
+    ]
 }

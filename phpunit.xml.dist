@@ -20,6 +20,9 @@
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/unit/</directory>
         </testsuite>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">./tests/integration/</directory>
+        </testsuite>
     </testsuites>
     <logging>
         <log type="coverage-html" target="tmp"/>

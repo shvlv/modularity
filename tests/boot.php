@@ -12,6 +12,7 @@ if (!is_file($autoload)) {
 putenv('TESTS_DIR=' . $testsDir);
 putenv('LIB_DIR=' . $libDir);
 putenv('VENDOR_DIR=' . $vendorDir);
+putenv('RESOURCES_DIR=' . $testsDir . '/resources');
 
 error_reporting(E_ALL); // phpcs:ignore
 
@@ -23,6 +24,5 @@ if (!defined('PHPUNIT_COMPOSER_INSTALL')) {
 }
 
 defined('ABSPATH') or define('ABSPATH', "{$vendorDir}/johnpbloch/wordpress-core/");
-require_once "{$vendorDir}/johnpbloch/wordpress-core/wp-includes/class-wp-error.php";
 
 unset($testsDir, $libDir, $vendorDir, $autoload);

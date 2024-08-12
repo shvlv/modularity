@@ -14,8 +14,18 @@ use Inpsyde\Modularity\Properties\Properties;
 use Inpsyde\Modularity\Tests\TestCase;
 use Psr\Container\ContainerInterface;
 
+/**
+ * @runTestsInSeparateProcesses
+ */
 class PackageTest extends TestCase
 {
+    public function setUp(): void
+    {
+        if (!class_exists(\WP_Error::class)) {
+            require getenv('VENDOR_DIR') . '/johnpbloch/wordpress-core/wp-includes/class-wp-error.php';
+        }
+    }
+
     /**
      * @test
      */
